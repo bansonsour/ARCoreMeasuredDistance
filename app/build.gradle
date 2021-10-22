@@ -37,8 +37,8 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
     implementation "com.google.ar:core:$rootProject.arcore"
-    implementation "com.google.ar.sceneform:core:$rootProject.arcore"
-    implementation "com.google.ar.sceneform.ux:sceneform-ux:$rootProject.arcore"
+    implementation "com.google.ar.sceneform:core:$rootProject.arSceneform"
+    implementation "com.google.ar.sceneform.ux:sceneform-ux:$rootProject.arSceneform"
     implementation "com.blankj:utilcode:1.23.7"
 
     implementation 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.49-androidx'//RecyclerView adapter

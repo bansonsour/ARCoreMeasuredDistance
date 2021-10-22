@@ -2,6 +2,7 @@ package com.gj.arcoredraw
 
 import android.annotation.SuppressLint
 import android.content.Intent
+import android.content.pm.ApplicationInfo
 import android.icu.text.DecimalFormat
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
@@ -13,6 +14,7 @@ import com.blankj.utilcode.util.ActivityUtils
 import com.blankj.utilcode.util.LogUtils
 import com.blankj.utilcode.util.ToastUtils
 import com.google.ar.core.Anchor
+import com.google.ar.core.ArCoreApk
 import com.google.ar.sceneform.AnchorNode
 import com.google.ar.sceneform.Node
 import com.google.ar.sceneform.math.MathHelper
@@ -31,9 +33,16 @@ class MainActivity : AppCompatActivity() {
                 WindowManager.LayoutParams.FLAG_FULLSCREEN)// 设置全屏
         setContentView(R.layout.activity_main)
         initView()
+
+        println("ArCoreApk applicationInfo.sourceDir ${applicationInfo.sourceDir}")
     }
 
     private fun initView() {
+
+        var availability = ArCoreApk.getInstance().checkAvailability(this)
+
+        println("ArCoreApk availability isSupported:${availability?.isSupported},name:${availability?.name}")
+
         UI_Last.setOnClickListener {
             //上一步
             when (dataArray.size) {
@@ -202,6 +211,8 @@ class MainActivity : AppCompatActivity() {
 
     override fun onDestroy() {
         super.onDestroy()
-        (UI_ArSceneView as MyArFragment).onDestroy()
+        if (UI_ArSceneView != null) {
+            (UI_ArSceneView as MyArFragment).onDestroy()
+        }
     }
 }

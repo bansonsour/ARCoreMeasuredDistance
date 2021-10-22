@@ -13,6 +13,8 @@ import com.google.ar.sceneform.math.Vector3
 import com.google.ar.sceneform.rendering.MaterialFactory
 import com.google.ar.sceneform.rendering.ShapeFactory
 import kotlinx.android.synthetic.main.activity_cross.*
+import kotlinx.android.synthetic.main.activity_cross.UI_ArSceneView
+import kotlinx.android.synthetic.main.activity_main.*
 
 class CrossActivity : AppCompatActivity() {
     private val dataArray = arrayListOf<AnchorInfoBean>()
@@ -144,6 +146,8 @@ class CrossActivity : AppCompatActivity() {
 
     override fun onDestroy() {
         super.onDestroy()
-        (UI_ArSceneView as MyArFragment).onDestroy()
+        if (UI_ArSceneView != null) {
+            (UI_ArSceneView as MyArFragment).onDestroy()
+        }
     }
 }
